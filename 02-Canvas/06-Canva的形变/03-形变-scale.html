@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      background-image: url("../images/grid.png");
+    }
+
+    canvas {
+      background-color: rgba(255, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="tutorial" width="300" height="300">
+    你的浏览器不兼容Canvas, 请升级浏览器
+  </canvas>
+
+  <script>
+    window.onload = function () {
+      let canvasEl = document.getElementById("tutorial")
+      if (!canvasEl.getContext) {
+        return
+      }
+      let ctx = canvasEl.getContext("2d")
+
+      // 做形变之前调用save方法保存状态
+      ctx.save()
+      ctx.translate(100, 100)
+      ctx.scale(2, 2)
+      ctx.translate(10, 0)
+      ctx.fillRect(0, 0, 50, 50)
+
+      // 恢复状态
+      ctx.restore()
+    } 
+  </script>
+</body>
+
+</html>

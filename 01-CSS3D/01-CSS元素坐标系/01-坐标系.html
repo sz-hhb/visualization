@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      background-image: url("../images//grid.png");
+    }
+
+    .box {
+      width: 200px;
+      height: 100px;
+      background-color: skyblue;
+
+      /* transform: translateX(100px) translateX(200px) translateX(100px); */
+      /* transform: rotate(45deg) translateX(100px); */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+  <button class="button" onclick="move()">移动</button>
+
+  <script>
+    let x = [100, 200, 300]
+    let i = 0
+    function move() {
+      let box = document.querySelector(".box")
+
+      box.style.transform = `translateX(${x[i]}px)`
+
+      i += 1
+    }
+  </script>
+</body>
+
+</html>

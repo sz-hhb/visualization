@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button onclick="back()">返回 > 中国地图</button>
+  <div id="main" style="height: 400px"></div>
+
+  <script src="../libs/echarts-5.3.3.js"></script>
+  <script src="./geojson/china_geojson.js"></script>
+  <script src="./geojson/gd_geojson.js"></script>
+
+  <script>
+    let myChart = null
+    let option = {}
+
+    window.onload = function () {
+      echarts.registerMap("china", { geoJSON: chinaJson })
+
+      myChart = echarts.init(document.getElementById('main'))
+
+      option = {
+        series: [
+          { type: "map", map: "china", roam: true }
+        ]
+      }
+
+      myChart.setOption(option)
+
+      myChart.on("click", function (event) {
+        console.log(event)
+        if (event.name === "广东") {
+          if (!echarts.getMap(event.name)) {
+            echarts.registerMap(event.name, { geoJSON: gd_geojson })
+          }
+          option.series[0].map = event.name
+          myChart.setOption(option)
+        }
+      })
+    }
+
+    function back() {
+      option.series[0].map = "china"
+      myChart.setOption(option)
+    }
+  </script>
+</body>
+
+</html>
